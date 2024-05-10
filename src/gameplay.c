@@ -55,7 +55,7 @@ void DecodPromotion(char* Not, unsigned int stdesk[8], unsigned int newdesk[8], 
   putfig->fig = findPos(figures, 16, Not[4]);
 }
 
-void DecodFigNot(char* Not, unsigned int stdesk[8], unsigned int newdesk[8], bool colour, PosFigure* putfig, PosFigure* deletefig, unsigned int* castling) {
+void DecodFigNot(char* Not, unsigned int stdesk[8], unsigned int newdesk[8], bool colour, PosFigure* putfig, PosFigure* deletefig, unsigned char* castling) {
   if (!colour) { Not[2] = (char)105 - Not[2]; Not[4] = (char)105 - Not[4]; }
   putfig->fig = findPos(figures, 16, Not[0]);
   putfig->column = (unsigned int)(Not[3]) - 96;
@@ -92,7 +92,7 @@ int FindColisns(unsigned int desk[8], unsigned int vars[200][8], unsigned int ca
   for (int i = 0; i < 200; i++) {
     if (CmpDesks(desk, vars[i])) return 1;
   }
-  if (CmpDesks(desk, castlevars[0]) || CmpDesks(desk, castlevars)) return 1;
+  if (CmpDesks(desk, castlevars[0]) || CmpDesks(desk, castlevars[0])) return 1;
   return 0;
 }
 
@@ -151,12 +151,12 @@ void EnterMove(gamevar* game, unsigned int newdesk[8], PosFigure* movingfig) {
   char* move = (char*)calloc(sizeof(char), 6);
   printf("Enter move: ");
   scanf("%s", move);
-  DecodNotation(move, strlen(move), game->desk, newdesk, game->colour, game->castling, movingfig);
+  DecodNotation(move, strlen(move), game->desk, newdesk, game->colour, &game->castling, movingfig);
 
   while (!FindColisns(newdesk, game->vars, game->castlevars)) {
     printf("Incorrect move, try again: ");
     scanf("%s", move);
-    DecodNotation(move, strlen(move), game->desk, newdesk, game->colour, game->castling, movingfig);
+    DecodNotation(move, strlen(move), game->desk, newdesk, game->colour, &game->castling, movingfig);
   }
 
   int cof;
