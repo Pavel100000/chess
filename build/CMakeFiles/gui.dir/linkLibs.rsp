@@ -1,0 +1,1 @@
+ "lib/SDL_ttf-release-2.22.0/libSDL2_ttf.dll.a" "lib/SDL-release-2.30.3/libSDL2.dll.a" -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 
