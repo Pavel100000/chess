@@ -53,7 +53,7 @@ void DrawChessboard(SDL_Renderer* renderer) {
     }
 }
 
-int main(int argc, char* argv[]) {
+int WinMain(int argc, char* argv[]) {
     SDL_Init(SDL_INIT_VIDEO);
 
     SDL_Window* window = SDL_CreateWindow("Шахматная доска",
