@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 3.11)
 
 project(Chess)
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 set(SOURCE
     ./src/bitboards.c
@@ -73,14 +77,22 @@ if (MyDebug)
 endif()
 
 add_executable(chess ${SOURCE})
-add_executable(gui_test ./gui/gui.c)
-
-target_link_libraries(gui_test 
-    SDL2
-    SDL2_ttf
-)
 
 target_include_directories(chess PRIVATE ${INCLUDE_DIR})
 
-target_compile_features(chess PUBLIC c_std_99)
+target_compile_features(chess PRIVATE c_std_99)
 
+add_subdirectory(lib/sdl)
+add_subdirectory(lib/sdl_ttf)
+
+add_executable(gui gui/gui.c)
+
+target_include_directories(gui PRIVATE 
+	lib/sdl/include/
+    lib/sdl_ttf/
+)
+
+target_link_libraries(gui
+    SDL2
+    SDL2_ttf
+)
