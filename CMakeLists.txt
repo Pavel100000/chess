@@ -82,17 +82,20 @@ target_include_directories(chess PRIVATE ${INCLUDE_DIR})
 
 target_compile_features(chess PRIVATE c_std_99)
 
-add_subdirectory(lib/SDL-release-2.30.3)
-add_subdirectory(lib/SDL_ttf-release-2.22.0)
+add_subdirectory(./lib/SDL-release-2.30.3)
+add_subdirectory(./lib/SDL_ttf-release-2.22.0)
+add_subdirectory(./lib/SDL_image-release-2.8.2)
 
 add_executable(gui gui/gui.c)
 
 target_include_directories(gui PRIVATE
-    lib/SDL-release-2.30.3/include/
-    lib/SDL_ttf-release-2.22.0/
+    ./lib/SDL-release-2.30.3/include/
+    ./lib/SDL_ttf-release-2.22.0/
+    ./lib/SDL_image-release-2.8.2/include/
 )
 
 target_link_libraries(gui PRIVATE
     SDL2
     SDL2_ttf
+    SDL2_image
 )
