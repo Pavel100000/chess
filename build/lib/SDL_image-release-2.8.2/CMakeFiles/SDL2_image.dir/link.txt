@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\SDL2_image.dir/objects.a
+C:\chess\w64devkit\bin\ar.exe qc CMakeFiles\SDL2_image.dir/objects.a @CMakeFiles\SDL2_image.dir\objects1.rsp
+C:\chess\w64devkit\bin\cc.exe -O3 -DNDEBUG -Wl,--no-undefined -shared -o ..\..\SDL2_image.dll -Wl,--out-implib,libSDL2_image.dll.a -Wl,--major-image-version,0,--minor-image-version,800 -Wl,--whole-archive CMakeFiles\SDL2_image.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\SDL2_image.dir\linkLibs.rsp
