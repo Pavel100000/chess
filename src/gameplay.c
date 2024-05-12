@@ -1,6 +1,10 @@
+#include <stdbool.h>
+#include <SDL.h>
+#include <SDL_image.h>
+
 #include "rules.h"
 #include "bitboards.h"
-#include <stdbool.h>
+#include "chess.h"
 
 typedef struct {
   unsigned int desk[8];
@@ -170,7 +174,7 @@ void EnterMove(gamevar* game, unsigned int newdesk[8], PosFigure* movingfig) {
   free(move);
 }
 
-void StartGame() {
+void StartGame(SDL_Renderer *renderer, SDL_Texture *images[16], SDL_Texture* images_ascii[256]) {
   gamevar* game = (gamevar*)calloc(sizeof(gamevar), 1);
 
   InitGame(game);
@@ -179,9 +183,19 @@ void StartGame() {
   PosFigure* movingfig = (PosFigure*)malloc(sizeof(PosFigure));
 
   while ( !CmpDesks(ZeroMassive, game->vars[0]) ) {
-    if (game->colour) PrintDesk(game->desk);
-    else {ReverseColours(game->desk); PrintDesk(game->desk); ReverseColours(game->desk);}
-
+    if (game->colour)
+    { 
+        PrintDesk(game->desk);
+        Print(renderer, images, images_ascii, game->desk);
+    }
+    else 
+    {
+        ReverseColours(game->desk);
+        PrintDesk(game->desk);
+        Print(renderer, images, images_ascii, game->desk);
+        ReverseColours(game->desk);
+    }
+    
     EnterMove(game, newdesk, movingfig);
 
     game->colour = !(game->colour);
@@ -197,9 +211,4 @@ void StartGame() {
   }
 
   free(game);
-}
-
-
-int main() {
-  StartGame();
 }

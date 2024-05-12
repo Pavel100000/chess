@@ -7,17 +7,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
-set(SOURCE
-    ./src/bitboards.c
-    ./src/gameplay.c
-    ./src/rules2ver.c
-)
-
-set(INCLUDE_DIR 
-    ./include/
-)
-
-set(DEBUG_FLAGS 
+set(MY_DEBUG_FLAGS
     -DDEBUG
     -ggdb3
     -O0 
@@ -70,15 +60,31 @@ set(DEBUG_FLAGS
     -fsanitize=address,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,leak,nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 )
 
-option(MyDebug OFF)
-
-if (MyDebug)
-    set(CMAKE_C_FLAGS ${DEBUG_FLAGS})
+if (CMAKE_BUILD_TYPE EQUAL "MyDedug")
+    set(CMAKE_C_FLAGS ${MY_DEBUG_FLAGS})
 endif()
 
-add_executable(chess ${SOURCE})
+set(SOURCES
+    ./src/main.c
+    ./src/bitboards.c
+    ./src/gameplay.c
+    ./src/rules2ver.c
+    ./src/gui.c
+)
 
-target_include_directories(chess PRIVATE ${INCLUDE_DIR})
+set(INCLUDE_DIRS
+    ./include/
+)
+
+set(LIB_INCLUDE_DIRS
+    ./lib/SDL-release-2.30.3/include/
+    ./lib/SDL_ttf-release-2.22.0/
+    ./lib/SDL_image-release-2.8.2/include/
+)
+
+add_executable(chess ${SOURCES})
+
+target_include_directories(chess PRIVATE ${INCLUDE_DIRS} ${LIB_INCLUDE_DIRS})
 
 target_compile_features(chess PRIVATE c_std_99)
 
@@ -86,15 +92,7 @@ add_subdirectory(./lib/SDL-release-2.30.3)
 add_subdirectory(./lib/SDL_ttf-release-2.22.0)
 add_subdirectory(./lib/SDL_image-release-2.8.2)
 
-add_executable(gui gui/gui.c)
-
-target_include_directories(gui PRIVATE
-    ./lib/SDL-release-2.30.3/include/
-    ./lib/SDL_ttf-release-2.22.0/
-    ./lib/SDL_image-release-2.8.2/include/
-)
-
-target_link_libraries(gui PRIVATE
+target_link_libraries(chess PRIVATE
     SDL2
     SDL2_ttf
     SDL2_image
