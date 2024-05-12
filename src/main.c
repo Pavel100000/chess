@@ -25,10 +25,10 @@ int WinMain() {
 
     SDL_Texture* images[16];
     SDL_Texture* images_ascii[256];
-    //InitImages(images, renderer);
-    //InitASCII(images_ascii, renderer);
+    InitImages(images, renderer);
+    InitASCII(images_ascii, renderer);
 
-    StartGame(renderer, images, images_ascii);
+    StartGrafikGame(renderer, images, images_ascii);
 
     SDL_RenderClear(renderer);
     SDL_DestroyRenderer(renderer);
