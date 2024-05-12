@@ -184,18 +184,18 @@ void StartGame(SDL_Renderer *renderer, SDL_Texture *images[16], SDL_Texture* ima
 
   while ( !CmpDesks(ZeroMassive, game->vars[0]) ) {
     if (game->colour)
-    { 
+    {
         PrintDesk(game->desk);
         Print(renderer, images, images_ascii, game->desk);
     }
-    else 
+    else
     {
         ReverseColours(game->desk);
         PrintDesk(game->desk);
         Print(renderer, images, images_ascii, game->desk);
         ReverseColours(game->desk);
     }
-    
+
     EnterMove(game, newdesk, movingfig);
 
     game->colour = !(game->colour);

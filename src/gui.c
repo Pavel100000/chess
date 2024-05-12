@@ -58,25 +58,21 @@ void DrawPressKletka(SDL_Renderer* renderer, int column, int line) {
 }
 
 void InitImages(SDL_Texture* images[16], SDL_Renderer* renderer) {
-    images[1] = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wr.png"));
-    images[2] = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wn.png"));
-    images[3] = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wb.png"));
-    images[4] = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wq.png"));
-    images[5] = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wp.png"));
-    images[6] = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wk.png"));
-    images[7] = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wp.png"));
-    images[8] = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wp.png"));
-    images[9] = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/bp.png"));
+    images[1]  = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wr.png"));
+    images[2]  = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wn.png"));
+    images[3]  = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wb.png"));
+    images[4]  = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wq.png"));
+    images[5]  = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wp.png"));
+    images[6]  = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wk.png"));
+    images[7]  = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wp.png"));
+    images[8]  = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/wp.png"));
+    images[9]  = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/bp.png"));
     images[10] = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/bk.png"));
     images[11] = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/bp.png"));
     images[12] = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/bq.png"));
     images[13] = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/bb.png"));
     images[14] = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/bn.png"));
     images[15] = SDL_CreateTextureFromSurface(renderer, IMG_Load("../images/br.png"));
-    assert(images[1] != NULL);
-    assert(images[5] != NULL);
-    assert(images[7] != NULL);
-    assert(images[13] != NULL);
 }
 
 void InitASCII(SDL_Texture* images_ascii[256], SDL_Renderer* renderer) {
@@ -97,46 +93,35 @@ void DrawChessboard(SDL_Renderer* renderer, unsigned int desk[8], SDL_Texture* i
     SDL_Rect rect;
     rect.w = TILE_SIZE;
     rect.h = TILE_SIZE;
-    
+
     unsigned int t;
     for (int i = 0; i < BOARD_SIZE; i++) {
         for (int j = 0; j < BOARD_SIZE; j++) {
             rect.x = j * TILE_SIZE;
             rect.y = (9 - i) * TILE_SIZE;
-            if (i == 9 || i == 0 || j == 9 || j == 0)
-            {
+            if (i == 9 || i == 0 || j == 9 || j == 0) {
                 rect.y = i * TILE_SIZE;
 
                 SDL_SetRenderDrawColor(renderer, 255, 191, 131, 255);  // Белый цвет
                 SDL_RenderFillRect(renderer, &rect);
 
-                if (i == 9 & 0 < j && j < 9 )
-                {
-                    SDL_RenderCopy(renderer, images_ascii['a' + j - 1], NULL, &rect);
-                }
-                else if (j == 9 & 0 < i && i < 9 )
-                {
-                    SDL_RenderCopy(renderer, images_ascii['8' - i + 1], NULL, &rect);
-                }
+                if (i == 9 & 0 < j && j < 9 )      SDL_RenderCopy(renderer, images_ascii['a' + j - 1], NULL, &rect);
+                else if (j == 9 & 0 < i && i < 9 ) SDL_RenderCopy(renderer, images_ascii['8' - i + 1], NULL, &rect);
             }
-            else
-            {
+            else {
                 if ((i + j) % 2 == 1) SDL_SetRenderDrawColor(renderer, 255, 191, 131, 255);  // Белый цвет
                 else                  SDL_SetRenderDrawColor(renderer, 106, 52, 2, 255);
                 SDL_RenderFillRect(renderer, &rect);
 
                 t = GetKletka(desk, j, i);
-                if (t != 0) {
-                    if ((i + j) % 2 == 0) SDL_RenderCopy(renderer, images[t], NULL, &rect);
-                    else                  SDL_RenderCopy(renderer, images[t], NULL, &rect);
-                }
+                if (t != 0) SDL_RenderCopy(renderer, images[t], NULL, &rect);
             }
         }
     }
 }
 
 int Print(SDL_Renderer *renderer, SDL_Texture *images[16], SDL_Texture* images_ascii[256], unsigned int *desk)
-{    
+{
     // bool quit = false;
     // while (!quit)
     // {
@@ -156,7 +141,7 @@ int Print(SDL_Renderer *renderer, SDL_Texture *images[16], SDL_Texture* images_a
     //                 case SDLK_ESCAPE:
     //                     quit = true;
     //                     break;
-                    
+
     //                 default:
     //                     break;
     //             }
@@ -166,7 +151,7 @@ int Print(SDL_Renderer *renderer, SDL_Texture *images[16], SDL_Texture* images_a
     //             SDL_GetMouseState(&x, &y);
     //             printf("Нажатие (%d; %d)\n", x, y);
     //             break;
-            
+
     //         default:
     //             break;
     //     }
@@ -174,7 +159,7 @@ int Print(SDL_Renderer *renderer, SDL_Texture *images[16], SDL_Texture* images_a
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderClear(renderer);
 
-        DrawChessboard(renderer, desk, images, images_ascii);
+        //DrawChessboard(renderer, desk, images, images_ascii);
         SDL_RenderPresent(renderer);
     // }
 
