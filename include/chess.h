@@ -13,12 +13,10 @@
 #define TILE_SIZE     50
 #define BOARD_SIZE    10
 
-
-int Print(SDL_Renderer *renderer, SDL_Texture *images[16], SDL_Texture* images_ascii[256], unsigned int *desk);
-
-void StartGame(SDL_Renderer *renderer, SDL_Texture *images[16], SDL_Texture* images_ascii[256]);
+void StartGrafikGame(SDL_Renderer *renderer, SDL_Texture *images[16], SDL_Texture* images_ascii[256]);
 void InitImages(SDL_Texture* images[16], SDL_Renderer* renderer);
 void InitASCII(SDL_Texture* images_ascii[256], SDL_Renderer* renderer);
+void DrawChessboard(SDL_Renderer* renderer, unsigned int desk[8], SDL_Texture* images[16], SDL_Texture* images_ascii[256]);
 
 
 #endif

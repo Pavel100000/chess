@@ -174,7 +174,7 @@ void EnterMove(gamevar* game, unsigned int newdesk[8], PosFigure* movingfig) {
   free(move);
 }
 
-void StartGame(SDL_Renderer *renderer, SDL_Texture *images[16], SDL_Texture* images_ascii[256]) {
+void StartGame(SDL_Renderer* renderer, SDL_Texture* images[16], SDL_Texture* images_ascii[256]) {
   gamevar* game = (gamevar*)calloc(sizeof(gamevar), 1);
 
   InitGame(game);
@@ -183,18 +183,8 @@ void StartGame(SDL_Renderer *renderer, SDL_Texture *images[16], SDL_Texture* ima
   PosFigure* movingfig = (PosFigure*)malloc(sizeof(PosFigure));
 
   while ( !CmpDesks(ZeroMassive, game->vars[0]) ) {
-    if (game->colour)
-    {
-        PrintDesk(game->desk);
-        Print(renderer, images, images_ascii, game->desk);
-    }
-    else
-    {
-        ReverseColours(game->desk);
-        PrintDesk(game->desk);
-        Print(renderer, images, images_ascii, game->desk);
-        ReverseColours(game->desk);
-    }
+    if (game->colour) PrintDesk(game->desk);
+    else { ReverseColours(game->desk); PrintDesk(game->desk); ReverseColours(game->desk); }
 
     EnterMove(game, newdesk, movingfig);
 
@@ -205,10 +195,100 @@ void StartGame(SDL_Renderer *renderer, SDL_Texture *images[16], SDL_Texture* ima
     GenAllMoves(game->desk, game->vars);
     GenCastleVars(game->desk, game->castling, game->castlevars, game->colour);
     game->lenvars = GetLenVars(game->vars);
-    //printf("\nvariants: \n");
-    //PrintVars(game->vars, game->lenvars);
-    //PrintVars(game->castlevars, 2);
   }
 
   free(game);
+}
+
+int ConverToNot(char* Not, int x1, int y1, unsigned int fig, int x2, int y2) {
+  if (fig == 5 || fig == 7 || fig == 9 || fig == 11) {
+    Not[0] = (char)((int)'a' + x1 - 1);
+    Not[1] = (char)((int)'1' + y1 - 1);
+    Not[2] = (char)((int)'a' + x2 - 1);
+    Not[3] = (char)((int)'1' + y2 - 1);
+    return 4;
+  }
+  else if ( (fig == 6 && x1 == 5 && y1 == 1 && x2 == 7 && y2 == 1) || (fig == 10 && x1 == 5 && y1 == 8 && x2 == 7 && y2 == 8) ) {
+    Not[0] = '0'; Not[1] = '-'; Not[2] = '0'; return 3;
+  }
+  else if ( (fig == 6 && x1 == 5 && y1 == 1 && x2 == 3 && y2 == 1) || (fig == 10 && x1 == 5 && y1 == 8 && x2 == 3 && y2 == 8) ) {
+    Not[0] = '0'; Not[1] = '-'; Not[2] = '0'; Not[3] = '-'; Not[4] = '0'; return 5;
+  }
+  else {
+    if (isBlack(fig)) Not[0] = figures[16 - fig];
+    else Not[0] = figures[fig];
+    Not[1] = (char)((int)'a' + x1 - 1);
+    Not[2] = (char)((int)'1' + y1 - 1);
+    Not[3] = (char)((int)'a' + x2 - 1);
+    Not[4] = (char)((int)'1' + y2 - 1);
+    return 5;
+  }
+}
+
+void StartGrafikGame(SDL_Renderer* renderer, SDL_Texture* images[16], SDL_Texture* images_ascii[256]) {
+  bool quit = false; int click = 0; int cof;
+  char* Not = (char*)calloc(sizeof(char), 6); int lenNot; Not[6] = '\0';
+  int x1; int y1; unsigned int fig;
+  int x2; int y2;
+  gamevar* game = (gamevar*)calloc(sizeof(gamevar), 1);
+
+  InitGame(game);
+
+  unsigned int newdesk[8] = {0};
+  PosFigure* movingfig = (PosFigure*)malloc(sizeof(PosFigure));
+
+  while (!quit && !CmpDesks(ZeroMassive, game->vars[0])) {
+      SDL_Event event;
+      int x; int y;
+
+      SDL_WaitEvent(&event);
+      switch (event.type) {
+          case SDL_QUIT:
+              quit = true;
+              break;
+          case SDL_MOUSEBUTTONDOWN:
+               // обработка нажатия мыши
+               SDL_GetMouseState(&x, &y);
+               x = x / TILE_SIZE;
+               y = 9 - y / TILE_SIZE;
+               if (0 < x && x < 9 && 0 < y && y < 9) {
+                 if (click == 0) {
+                   if (game->colour) fig = GetKletka(game->desk, x, y);
+                   else {ReverseColours(game->desk); fig = GetKletka(game->desk, x, y); ReverseColours(game->desk);}
+                   if (fig != 0) {x1 = x; y1 = y; click++;}
+                 }
+                 else {
+                   x2 = x; y2 = y; click = 0;
+                   lenNot = ConverToNot(Not, x1, y1, fig, x2, y2);
+                   printf("Notation: %s\n", Not);
+                   DecodNotation(Not, lenNot, game->desk, newdesk, game->colour, &game->castling, movingfig);
+
+                   if (FindColisns(newdesk, game->vars, game->castlevars)) {
+                     if (game->colour) cof = 0;
+                     else cof = 1;
+
+                     if (movingfig->fig == 6) SetBitChar(game->castling, 2 + cof*3);
+                     else if (movingfig->fig == 1 && movingfig->column == 1)  SetBitChar(game->castling, 1 + cof*3);
+                     else if (movingfig->fig == 1 && movingfig->column == 1)  SetBitChar(game->castling, 3 + cof*3);
+
+                     game->colour = !(game->colour);
+                     ReverseColours(newdesk);
+                     CopyDesk(newdesk, game->desk);
+                     memset(game->vars, 0, sizeof(unsigned int)*200*8);
+                     GenAllMoves(game->desk, game->vars);
+                     GenCastleVars(game->desk, game->castling, game->castlevars, game->colour);
+                     game->lenvars = GetLenVars(game->vars);
+                     }
+                   }
+                 }
+                 break;
+      }
+
+      SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+      SDL_RenderClear(renderer);
+
+      if (game->colour) DrawChessboard(renderer, game->desk, images, images_ascii);
+      else {ReverseColours(game->desk); DrawChessboard(renderer, game->desk, images, images_ascii); ReverseColours(game->desk);}
+      SDL_RenderPresent(renderer);
+   }
 }

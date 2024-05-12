@@ -1,3 +1,5 @@
+#define SDL_MAIN_HANDLED
+
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
@@ -8,7 +10,7 @@
 #include "mydef.h"
 #include "chess.h"
 
-int WinMain() {
+int main() {
     if (SDL_Init(SDL_INIT_VIDEO) < 0){PRINT_ERROR("Ошибка инициализации SDL: %s\n", SDL_GetError());}
     if (IMG_Init(IMG_INIT_PNG) == 0) {PRINT_ERROR("Ошибка инициализации IMG: %s\n", SDL_GetError());}
     if (TTF_Init() == -1)            {PRINT_ERROR("Ошибка инициализации TTF: %s\n", SDL_GetError());}
@@ -25,10 +27,10 @@ int WinMain() {
 
     SDL_Texture* images[16];
     SDL_Texture* images_ascii[256];
-    //InitImages(images, renderer);
-    //InitASCII(images_ascii, renderer);
+    InitImages(images, renderer);
+    InitASCII(images_ascii, renderer);
 
-    StartGame(renderer, images, images_ascii);
+    StartGrafikGame(renderer, images, images_ascii);
 
     SDL_RenderClear(renderer);
     SDL_DestroyRenderer(renderer);
