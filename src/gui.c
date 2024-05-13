@@ -83,6 +83,6 @@ void DrawChessboard(SDL_Renderer* renderer, unsigned int desk[8], SDL_Texture* i
       if ((x + y) % 2 == 0) SDL_SetRenderDrawColor(renderer, 100, 111, 64, 255);
       else SDL_SetRenderDrawColor(renderer, 130, 151, 105, 255);
       SDL_RenderFillRect(renderer, &rect);
-      SDL_RenderCopy(renderer, images[t], NULL, &rect);
+      if (t != 0) SDL_RenderCopy(renderer, images[t], NULL, &rect);
     }
 }

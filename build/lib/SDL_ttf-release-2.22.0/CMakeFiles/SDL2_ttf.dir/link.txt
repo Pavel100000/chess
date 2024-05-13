@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\SDL2_ttf.dir/objects.a
-C:\chess\w64devkit\bin\ar.exe qc CMakeFiles\SDL2_ttf.dir/objects.a @CMakeFiles\SDL2_ttf.dir\objects1.rsp
-C:\chess\w64devkit\bin\cc.exe -O3 -DNDEBUG -Wl,--no-undefined -shared -o ..\..\SDL2_ttf.dll -Wl,--out-implib,libSDL2_ttf.dll.a -Wl,--major-image-version,0,--minor-image-version,2200 -Wl,--whole-archive CMakeFiles\SDL2_ttf.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\SDL2_ttf.dir\linkLibs.rsp
