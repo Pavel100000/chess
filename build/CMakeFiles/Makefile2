@@ -155,8 +155,8 @@ lib/SDL_ttf-release-2.22.0/external/freetype/clean: lib/SDL_ttf-release-2.22.0/e
 
 # All Build rule for target.
 CMakeFiles/chess.dir/all: lib/SDL-release-2.30.3/CMakeFiles/SDL2.dir/all
-CMakeFiles/chess.dir/all: lib/SDL_ttf-release-2.22.0/CMakeFiles/SDL2_ttf.dir/all
 CMakeFiles/chess.dir/all: lib/SDL_image-release-2.8.2/CMakeFiles/SDL2_image.dir/all
+CMakeFiles/chess.dir/all: lib/SDL_ttf-release-2.22.0/CMakeFiles/SDL2_ttf.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\chess.dir\build.make CMakeFiles/chess.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\chess.dir\build.make CMakeFiles/chess.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\chess\build\CMakeFiles --progress-num=78 "Built target chess"

@@ -200,12 +200,34 @@ void StartGame(SDL_Renderer* renderer, SDL_Texture* images[16], SDL_Texture* ima
   free(game);
 }
 
-int ConverToNot(char* Not, int x1, int y1, unsigned int fig, int x2, int y2) {
+unsigned int DrawPawnVariants(unsigned int column, unsigned int line, SDL_Renderer* renderer, SDL_Texture* images[16]) {
+  SDL_Rect rect; rect.w = TILE_SIZE; rect.h = TILE_SIZE; rect.y = (9 - line) * TILE_SIZE;
+  unsigned int x; unsigned int y; SDL_Event event;
+  for (unsigned int i = 0; i < 4; i++) {
+    rect.x = (column - 1 + i) * TILE_SIZE;
+    SDL_SetRenderDrawColor(renderer, 130, 151, 105, 255);
+    SDL_RenderFillRect(renderer, &rect);
+    SDL_RenderCopy(renderer, images[i + 1], NULL, &rect);
+    SDL_RenderPresent(renderer);
+  }
+  bool quit = false;
+  while (!quit) {
+    SDL_WaitEvent(&event);
+    if (event.type == SDL_MOUSEBUTTONDOWN) {
+      SDL_GetMouseState(&x, &y); x = x / TILE_SIZE; y = 9 - y / TILE_SIZE;
+      if (0 < (x - column + 2) && (x - column + 2) < 5 && y == line) return (x - column) + 2;
+    }
+  }
+
+}
+
+int ConverToNot(char* Not, int x1, int y1, unsigned int fig, int x2, int y2, SDL_Renderer* renderer, SDL_Texture* images[16]) {
   if (fig == 5 || fig == 7 || fig == 9 || fig == 11) {
     Not[0] = (char)((int)'a' + x1 - 1);
     Not[1] = (char)((int)'1' + y1 - 1);
     Not[2] = (char)((int)'a' + x2 - 1);
     Not[3] = (char)((int)'1' + y2 - 1);
+    if (y2 == 8 || y2 == 1) {Not[4] = figures[DrawPawnVariants(x2, y2, renderer, images)]; return 5;}
     return 4;
   }
   else if ( (fig == 6 && x1 == 5 && y1 == 1 && x2 == 7 && y2 == 1) || (fig == 10 && x1 == 5 && y1 == 8 && x2 == 7 && y2 == 8) ) {
@@ -231,6 +253,7 @@ void StartGrafikGame(SDL_Renderer* renderer, SDL_Texture* images[16], SDL_Textur
   int x1; int y1; unsigned int fig;
   int x2; int y2;
   gamevar* game = (gamevar*)calloc(sizeof(gamevar), 1);
+  int selected_x = 0; int selected_y = 0;
 
   InitGame(game);
 
@@ -255,11 +278,14 @@ void StartGrafikGame(SDL_Renderer* renderer, SDL_Texture* images[16], SDL_Textur
                  if (click == 0) {
                    if (game->colour) fig = GetKletka(game->desk, x, y);
                    else {ReverseColours(game->desk); fig = GetKletka(game->desk, x, y); ReverseColours(game->desk);}
-                   if (fig != 0) {x1 = x; y1 = y; click++;}
+                   if (fig != 0) {
+                     x1 = x; y1 = y; click++;
+                     selected_x = x; selected_y = y;
+                   }
                  }
                  else {
                    x2 = x; y2 = y; click = 0;
-                   lenNot = ConverToNot(Not, x1, y1, fig, x2, y2);
+                   lenNot = ConverToNot(Not, x1, y1, fig, x2, y2, renderer, images);
                    printf("Notation: %s\n", Not);
                    DecodNotation(Not, lenNot, game->desk, newdesk, game->colour, &game->castling, movingfig);
 
@@ -287,8 +313,8 @@ void StartGrafikGame(SDL_Renderer* renderer, SDL_Texture* images[16], SDL_Textur
       SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
       SDL_RenderClear(renderer);
 
-      if (game->colour) DrawChessboard(renderer, game->desk, images, images_ascii);
-      else {ReverseColours(game->desk); DrawChessboard(renderer, game->desk, images, images_ascii); ReverseColours(game->desk);}
+      if (game->colour) DrawChessboard(renderer, game->desk, images, images_ascii, selected_x, selected_y);
+      else {ReverseColours(game->desk); DrawChessboard(renderer, game->desk, images, images_ascii, selected_x, selected_y); ReverseColours(game->desk);}
       SDL_RenderPresent(renderer);
    }
 }
