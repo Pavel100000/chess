@@ -4,8 +4,8 @@ project(Chess)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/)
 
 set(MY_DEBUG_FLAGS
     -DDEBUG
@@ -84,7 +84,10 @@ set(LIB_INCLUDE_DIRS
 
 add_executable(chess ${SOURCES})
 
-target_include_directories(chess PRIVATE ${INCLUDE_DIRS} ${LIB_INCLUDE_DIRS})
+target_include_directories(chess PRIVATE 
+  ${INCLUDE_DIRS} 
+  ${LIB_INCLUDE_DIRS}
+)
 
 target_compile_features(chess PRIVATE c_std_99)
 
