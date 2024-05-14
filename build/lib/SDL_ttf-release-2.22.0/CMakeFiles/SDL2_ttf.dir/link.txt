@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC -Wl,--no-undefined -shared -Wl,-soname,libSDL2_ttf-2.0.so.0 -o /home/hunter/Git/chess/bin/libSDL2_ttf-2.0.so.0.2200.0 CMakeFiles/SDL2_ttf.dir/SDL_ttf.c.o  -Wl,-rpath,/home/hunter/Git/chess/bin /home/hunter/Git/chess/bin/libSDL2-2.0.so.0.3000.3 external/freetype/libfreetype.a

@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "lib/SDL_ttf-release-2.22.0",
+		"source" : "lib/SDL_ttf-release-2.22.0"
+	}
+}

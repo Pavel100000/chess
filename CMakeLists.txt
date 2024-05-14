@@ -60,10 +60,6 @@ set(MY_DEBUG_FLAGS
     -fsanitize=address,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,leak,nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 )
 
-if (CMAKE_BUILD_TYPE EQUAL "MyDedug")
-    set(CMAKE_C_FLAGS ${MY_DEBUG_FLAGS})
-endif()
-
 set(SOURCES
     ./src/main.c
     ./src/bitboards.c
@@ -83,6 +79,11 @@ set(LIB_INCLUDE_DIRS
 )
 
 add_executable(chess ${SOURCES})
+
+if (CMAKE_BUILD_TYPE STREQUAL "MyDebug")
+    target_compile_options(chess PRIVATE ${MY_DEBUG_FLAGS})
+    target_link_options(chess    PRIVATE ${MY_DEBUG_FLAGS})
+endif()
 
 target_include_directories(chess PRIVATE 
   ${INCLUDE_DIRS} 

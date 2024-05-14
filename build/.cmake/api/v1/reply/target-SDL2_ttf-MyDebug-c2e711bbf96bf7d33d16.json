@@ -1,0 +1,220 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "/home/hunter/Git/chess/bin/libSDL2_ttf-2.0.so"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_options",
+			"sdl_target_link_options_no_undefined",
+			"target_link_libraries",
+			"target_compile_definitions",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"lib/SDL_ttf-release-2.22.0/CMakeLists.txt",
+			"lib/SDL_ttf-release-2.22.0/cmake/PrivateSdlFunctions.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 92,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 168,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 285,
+				"parent" : 2
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 107,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 252,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 101,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 97,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-fPIC -fvisibility=hidden"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 6,
+					"define" : "BUILD_SDL"
+				},
+				{
+					"define" : "DLL_EXPORT"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "SDL_BUILD_MAJOR_VERSION=2"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "SDL_BUILD_MICRO_VERSION=0"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "SDL_BUILD_MINOR_VERSION=22"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 7,
+					"path" : "/home/hunter/Git/chess/lib/SDL_ttf-release-2.22.0"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/home/hunter/Git/chess/build/lib/SDL-release-2.30.3/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/home/hunter/Git/chess/build/lib/SDL-release-2.30.3/include/SDL2"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/home/hunter/Git/chess/build/lib/SDL-release-2.30.3/include-config-mydebug/SDL2"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/home/hunter/Git/chess/build/lib/SDL_ttf-release-2.22.0/external/freetype/include"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/home/hunter/Git/chess/lib/SDL_ttf-release-2.22.0/external/freetype/include"
+				}
+			],
+			"language" : "C",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 4,
+			"id" : "SDL2::@1ca18453c03ceecf107f"
+		},
+		{
+			"backtrace" : 5,
+			"id" : "freetype::@8304d365e1efb0af04f4"
+		}
+	],
+	"id" : "SDL2_ttf::@051058e5f8863029ba79",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "-Wl,--no-undefined",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/hunter/Git/chess/bin",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/home/hunter/Git/chess/bin/libSDL2-2.0.so.0.3000.3",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "external/freetype/libfreetype.a",
+				"role" : "libraries"
+			}
+		],
+		"language" : "C"
+	},
+	"name" : "SDL2_ttf",
+	"nameOnDisk" : "libSDL2_ttf-2.0.so",
+	"paths" : 
+	{
+		"build" : "lib/SDL_ttf-release-2.22.0",
+		"source" : "lib/SDL_ttf-release-2.22.0"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "lib/SDL_ttf-release-2.22.0/SDL_ttf.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "lib/SDL_ttf-release-2.22.0/SDL_ttf.h",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "SHARED_LIBRARY"
+}

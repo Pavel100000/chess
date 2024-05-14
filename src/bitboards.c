@@ -22,11 +22,11 @@ void BitPrintDesk(unsigned int desk[8]) {
 unsigned int GetKletka(unsigned int desk[8], unsigned int column, unsigned int line) { // column, line = 1 - 8
   assert (line > 0);
   assert (line < 9);
-  return (desk[line - 1] & (15 << (28 - (column - 1)*4 ))) >> (28 - (column - 1)*4);
+  return (desk[line - 1] & (15U << (28 - (column - 1)*4 ))) >> (28 - (column - 1)*4);
 }
 
 void SetKletka(unsigned int desk[8], unsigned int column, unsigned int line, unsigned int figure) { // column, line = 1 - 8
-  desk[line - 1] = ( ( ~(15 << (28 - (column - 1)*4)) ) & (desk[line - 1]) ) | (figure << (28 - (column - 1)*4) );
+  desk[line - 1] = ( ( ~(15U << (28 - (column - 1)*4)) ) & (desk[line - 1]) ) | (figure << (28 - (column - 1)*4) );
 }
 
 void SimpleDecodNot(char Not[3], PosFigure* PosFig) {

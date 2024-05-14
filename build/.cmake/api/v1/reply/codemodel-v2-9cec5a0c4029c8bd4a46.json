@@ -1,0 +1,264 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						4
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-MyDebug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "lib/SDL-release-2.30.3",
+					"jsonFile" : "directory-lib.SDL-release-2.30.3-MyDebug-7d7e7fba138be4c8a0db.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.4"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "lib/SDL-release-2.30.3",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						3,
+						5,
+						8,
+						9
+					]
+				},
+				{
+					"build" : "lib/SDL_ttf-release-2.22.0",
+					"childIndexes" : 
+					[
+						3
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-lib.SDL_ttf-release-2.22.0-MyDebug-b98d423d65d2e3c33718.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "lib/SDL_ttf-release-2.22.0",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "lib/SDL_ttf-release-2.22.0/external/freetype",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-lib.SDL_ttf-release-2.22.0.external.freetype-MyDebug-cbabc52ab98dbc523508.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 3,
+					"source" : "lib/SDL_ttf-release-2.22.0/external/freetype",
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"build" : "lib/SDL_image-release-2.8.2",
+					"jsonFile" : "directory-lib.SDL_image-release-2.8.2-MyDebug-09221410b8f033dce7c2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 4,
+					"source" : "lib/SDL_image-release-2.8.2",
+					"targetIndexes" : 
+					[
+						2
+					]
+				}
+			],
+			"name" : "MyDebug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2,
+						4
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Chess",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "SDL2",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						3,
+						5,
+						8,
+						9
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						3
+					],
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "SDL2_ttf",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "freetype",
+					"parentIndex" : 2,
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						4
+					],
+					"name" : "SDL2_image",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL2::@1ca18453c03ceecf107f",
+					"jsonFile" : "target-SDL2-MyDebug-5b197212f22a5607d456.json",
+					"name" : "SDL2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL2-static::@1ca18453c03ceecf107f",
+					"jsonFile" : "target-SDL2-static-MyDebug-74f298d6630406b05371.json",
+					"name" : "SDL2-static",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "SDL2_image::@4682c7dfdf25a1b02192",
+					"jsonFile" : "target-SDL2_image-MyDebug-7a67606619381cbaa0df.json",
+					"name" : "SDL2_image",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL2_test::@1ca18453c03ceecf107f",
+					"jsonFile" : "target-SDL2_test-MyDebug-3c8de1e76210ed0fcfd5.json",
+					"name" : "SDL2_test",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "SDL2_ttf::@051058e5f8863029ba79",
+					"jsonFile" : "target-SDL2_ttf-MyDebug-c2e711bbf96bf7d33d16.json",
+					"name" : "SDL2_ttf",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL2main::@1ca18453c03ceecf107f",
+					"jsonFile" : "target-SDL2main-MyDebug-c8ab4afb6c6ea644bcb5.json",
+					"name" : "SDL2main",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "chess::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-chess-MyDebug-0cd72c6c54134b34a2d3.json",
+					"name" : "chess",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "freetype::@8304d365e1efb0af04f4",
+					"jsonFile" : "target-freetype-MyDebug-aef1484c325574f66fca.json",
+					"name" : "freetype",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "sdl_headers_copy::@1ca18453c03ceecf107f",
+					"jsonFile" : "target-sdl_headers_copy-MyDebug-187a18f468148448c8b6.json",
+					"name" : "sdl_headers_copy",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "uninstall::@1ca18453c03ceecf107f",
+					"jsonFile" : "target-uninstall-MyDebug-80d53b6c3502855dc6a0.json",
+					"name" : "uninstall",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/hunter/Git/chess/build",
+		"source" : "/home/hunter/Git/chess"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

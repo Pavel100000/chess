@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "lib/SDL_image-release-2.8.2",
+		"source" : "lib/SDL_image-release-2.8.2"
+	}
+}

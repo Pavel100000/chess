@@ -1,0 +1,141 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"lib/SDL_ttf-release-2.22.0/external/freetype/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 561,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 569,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 623,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 634,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 642,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 647,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "headers",
+			"destination" : "include/freetype2",
+			"paths" : 
+			[
+				{
+					"from" : "lib/SDL_ttf-release-2.22.0/external/freetype/include",
+					"to" : "."
+				}
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "headers",
+			"destination" : "include/freetype2/freetype/config",
+			"paths" : 
+			[
+				"build/lib/SDL_ttf-release-2.22.0/external/freetype/include/freetype/config/ftconfig.h",
+				"build/lib/SDL_ttf-release-2.22.0/external/freetype/include/freetype/config/ftoption.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "pkgconfig",
+			"destination" : "lib/pkgconfig",
+			"paths" : 
+			[
+				"build/lib/SDL_ttf-release-2.22.0/external/freetype/freetype2.pc"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"lib/SDL_ttf-release-2.22.0/external/freetype/libfreetype.a"
+			],
+			"targetId" : "freetype::@8304d365e1efb0af04f4",
+			"targetIndex" : 7,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "headers",
+			"destination" : "lib/cmake/freetype",
+			"exportName" : "freetype-targets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "freetype::@8304d365e1efb0af04f4",
+					"index" : 7
+				},
+				{
+					"id" : "freetype-interface::@8304d365e1efb0af04f4",
+					"index" : 0
+				}
+			],
+			"paths" : 
+			[
+				"lib/SDL_ttf-release-2.22.0/external/freetype/CMakeFiles/Export/778b4f54a68e80ec034bf381f364ca2c/freetype-config.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 6,
+			"component" : "headers",
+			"destination" : "lib/cmake/freetype",
+			"paths" : 
+			[
+				"build/lib/SDL_ttf-release-2.22.0/external/freetype/freetype-config-version.cmake"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "lib/SDL_ttf-release-2.22.0/external/freetype",
+		"source" : "lib/SDL_ttf-release-2.22.0/external/freetype"
+	}
+}

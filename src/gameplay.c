@@ -259,7 +259,7 @@ int ConverToNot(char* Not, int x1, int y1, unsigned int fig, int x2, int y2, SDL
 
 void GameMove(int x1, int y1, unsigned int fig, int x2, int y2, SDL_Renderer* renderer, gamevar* game,
   unsigned int newdesk[8], SDL_Texture* images[16], PosFigure* movingfig) {
-  char* Not = (char*)calloc(sizeof(char), 6); Not[6] = '\0';
+  char* Not = (char*)calloc(sizeof(char), 6); Not[5] = '\0';
   int lenNot = ConverToNot(Not, x1, y1, fig, x2, y2, renderer, images); int cof = 0;
   printf("Notation: %s\n", Not);
   DecodNotation(Not, lenNot, game->desk, newdesk, game->colour, &game->castling, movingfig);
